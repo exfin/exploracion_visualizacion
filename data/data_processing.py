@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Leemos el dataset
-df = pd.read_csv('data/Global_Youtube_Statistics.csv', sep=',', encoding='latin-1')
+df = pd.read_csv('data/Global_YouTube_Statistics.csv', sep=',', encoding='latin-1')
 
 # Quitamos las columnas de las coordenadas del país
 df = df.drop(['Latitude', 'Longitude'], axis=1)
