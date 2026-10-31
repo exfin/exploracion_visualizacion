@@ -1,0 +1,128 @@
+/* =========================================================================
+   Tema del dashboard: paleta tipo YouTube en modo claro y oscuro.
+   Las variables --yt-* son la fuente única de colores; abajo se mapean a
+   las variables de Bootstrap 5.3 (--bs-*) para que DBC las siga solo.
+   Contrastes verificados con WCAG (texto >= 4.5:1, controles >= 3:1).
+   ========================================================================= */
+
+/* ---- Modo claro (por defecto) ---- */
+:root,
+[data-bs-theme="light"] {
+  color-scheme: light;
+
+  --yt-bg: #FFFFFF;             /* fondo de página */
+  --yt-surface: #F2F2F2;        /* superficies secundarias (chips, hover) */
+  --yt-card: #FFFFFF;           /* tarjetas */
+  --yt-text: #0F0F0F;           /* texto principal (19.2:1) */
+  --yt-text-secondary: #606060; /* texto secundario (6.3:1 sobre fondo) */
+  --yt-border: #E5E5E5;         /* bordes decorativos */
+  --yt-border-strong: #8C8C8C;  /* bordes de controles (3.4:1) */
+  --yt-red: #FF0000;            /* acento de marca (no para texto) */
+  --yt-red-text: #CC0000;       /* rojo para texto (5.9:1) */
+  --yt-link: #065FD4;           /* enlaces y foco (5.8:1) */
+
+  /* Mapeo a Bootstrap */
+  --bs-body-bg: var(--yt-bg);
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-body-color: var(--yt-text);
+  --bs-body-color-rgb: 15, 15, 15;
+  --bs-emphasis-color: var(--yt-text);
+  --bs-heading-color: var(--yt-text);
+  --bs-secondary-color: var(--yt-text-secondary);
+  --bs-secondary-bg: var(--yt-surface);
+  --bs-tertiary-bg: var(--yt-surface);
+  --bs-border-color: var(--yt-border);
+  --bs-border-color-translucent: rgba(15, 15, 15, 0.1);
+  --bs-link-color: var(--yt-link);
+  --bs-link-color-rgb: 6, 95, 212;
+  --bs-link-hover-color: #054CAA;
+  --bs-link-hover-color-rgb: 5, 76, 170;
+  --bs-primary: var(--yt-red);
+  --bs-primary-rgb: 255, 0, 0;
+  --bs-primary-text-emphasis: var(--yt-red-text);
+  --bs-focus-ring-color: rgba(6, 95, 212, 0.35);
+}
+
+/* ---- Modo oscuro ---- */
+[data-bs-theme="dark"] {
+  color-scheme: dark;
+
+  --yt-bg: #0F0F0F;
+  --yt-surface: #272727;
+  --yt-card: #181818;
+  --yt-text: #F1F1F1;           /* 17.0:1 sobre fondo */
+  --yt-text-secondary: #AAAAAA; /* 6.4:1 sobre superficie */
+  --yt-border: #3F3F3F;
+  --yt-border-strong: #757575;  /* 3.2:1 sobre superficie */
+  --yt-red: #FF0000;
+  --yt-red-text: #FF4E45;       /* 4.6:1 sobre superficie */
+  --yt-link: #3EA6FF;           /* 5.8:1 sobre superficie */
+
+  --bs-body-bg: var(--yt-bg);
+  --bs-body-bg-rgb: 15, 15, 15;
+  --bs-body-color: var(--yt-text);
+  --bs-body-color-rgb: 241, 241, 241;
+  --bs-emphasis-color: var(--yt-text);
+  --bs-heading-color: var(--yt-text);
+  --bs-secondary-color: var(--yt-text-secondary);
+  --bs-secondary-bg: var(--yt-surface);
+  --bs-tertiary-bg: var(--yt-surface);
+  --bs-border-color: var(--yt-border);
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.12);
+  --bs-link-color: var(--yt-link);
+  --bs-link-color-rgb: 62, 166, 255;
+  --bs-link-hover-color: #7CC2FF;
+  --bs-link-hover-color-rgb: 124, 194, 255;
+  --bs-primary: var(--yt-red);
+  --bs-primary-rgb: 255, 0, 0;
+  --bs-primary-text-emphasis: var(--yt-red-text);
+  --bs-focus-ring-color: rgba(62, 166, 255, 0.4);
+}
+
+/* ---- Base ---- */
+body {
+  font-family: Roboto, Arial, sans-serif;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ---- Botón de cambio de tema (esquina superior derecha) ---- */
+.theme-toggle {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1050;
+  width: 2.75rem;               /* 44px: área táctil mínima */
+  height: 2.75rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.15rem;
+  --bs-btn-color: var(--yt-text);
+  --bs-btn-bg: var(--yt-surface);
+  --bs-btn-border-color: var(--yt-border);
+  --bs-btn-hover-color: var(--yt-text);
+  --bs-btn-hover-bg: var(--yt-border);
+  --bs-btn-hover-border-color: var(--yt-border-strong);
+  --bs-btn-active-color: var(--yt-text);
+  --bs-btn-active-bg: var(--yt-border);
+  --bs-btn-active-border-color: var(--yt-border-strong);
+  --bs-btn-focus-shadow-rgb: var(--bs-link-color-rgb);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--yt-link);
+  outline-offset: 2px;
+}
+
+/* El ícono se cambia solo con CSS: luna en modo claro, sol en modo oscuro */
+.theme-toggle .icon-sun { display: none; }
+[data-bs-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-bs-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+}
