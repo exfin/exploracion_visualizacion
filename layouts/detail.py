@@ -1,23 +1,11 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
-import plotly.express as px
-from data.data_processing import df
 
-# scatter entre edesempleo e ingresos
-fig_scatter = px.scatter(
-    df,
-    x='Unemployment rate',
-    y='highest_yearly_earnings',
-    size='subscribers',
-    color='category',
-    hover_name='Youtuber',
-    title="Relación: Tasa de Desempleo del País vs. Ingresos del YouTuber"
-)
-
+# El scatter (desempleo vs. ingresos) se dibuja en callbacks/detalle.py según el tema
 layout = html.Div([
     html.H2("Análisis Detallado y Métricas del País", className="section-title"),
     dbc.Card(
-        dbc.CardBody(dcc.Graph(figure=fig_scatter, className="chart")),
+        dbc.CardBody(dcc.Graph(id='grafico-scatter-detalle', className="chart")),
         className="chart-card",
     ),
 ])

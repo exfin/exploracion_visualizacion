@@ -46,6 +46,9 @@ SECUENCIA = {
              "#9085E9", "#C98500", "#D55181", "#008300"],
 }
 
+# Gris neutro para agrupar el resto de categorías ("Otras"); contraste >= 3:1
+NEUTRO = {"light": "#8C8C8C", "dark": "#757575"}
+
 FUENTE = "Roboto, Arial, sans-serif"
 
 
@@ -69,9 +72,12 @@ def _crear_template(modo: str) -> go.layout.Template:
         paper_bgcolor="rgba(0,0,0,0)",  # transparente: toma el color de la tarjeta
         plot_bgcolor="rgba(0,0,0,0)",
         font=dict(family=FUENTE, color=p["text"], size=13),
-        title=dict(font=dict(size=16, color=p["text"]), x=0, xanchor="left"),
+        # Título justo encima del área del gráfico, debajo de la barra de herramientas
+        # (en móvil la barra siempre está visible y tapaba el título)
+        title=dict(font=dict(size=16, color=p["text"]), x=0, xanchor="left",
+                   yref="paper", y=1, yanchor="bottom", pad=dict(b=14)),
         colorway=SECUENCIA[modo],
-        margin=dict(l=56, r=24, t=56, b=48),
+        margin=dict(l=56, r=24, t=76, b=48),
         xaxis=eje,
         yaxis=eje,
         legend=dict(
@@ -83,6 +89,12 @@ def _crear_template(modo: str) -> go.layout.Template:
             bgcolor=p["card"],
             bordercolor=p["border"],
             font=dict(family=FUENTE, color=p["text"]),
+        ),
+        # Barra de herramientas de Plotly acorde al tema
+        modebar=dict(
+            bgcolor="rgba(0,0,0,0)",
+            color=p["text_secondary"],
+            activecolor=p["text"],
         ),
     )
     return template
@@ -101,3 +113,29 @@ def get_template(theme: str) -> go.layout.Template:
 def get_secuencia(theme: str) -> list:
     """Devuelve la secuencia categórica según el tema."""
     return SECUENCIA["dark" if theme == "dark" else "light"]
+
+
+def get_neutro(theme: str) -> str:
+    """Devuelve el gris neutro según el tema."""
+    return NEUTRO["dark" if theme == "dark" else "light"]
+
+
+def figura_vacia(theme: str, titulo: str,
+                 mensaje: str = "No hay datos para los filtros seleccionados") -> go.Figure:
+    """Figura de estado vacío: un mensaje en lugar de un gráfico sin datos."""
+    fig = go.Figure()
+    fig.update_layout(
+        template=get_template(theme),
+        title=titulo,
+        # Sin ejes ni márgenes automáticos para que el mensaje quede centrado
+        xaxis=dict(visible=False, automargin=False),
+        yaxis=dict(visible=False, automargin=False),
+        margin=dict(l=24, r=24, t=76, b=24),
+        annotations=[dict(
+            text=mensaje,
+            showarrow=False,
+            xref="paper", yref="paper", x=0.5, y=0.5,
+            font=dict(size=14, color=PALETA["dark" if theme == "dark" else "light"]["text_secondary"]),
+        )],
+    )
+    return fig

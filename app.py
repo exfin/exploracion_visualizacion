@@ -1,7 +1,8 @@
 from dash import Dash, html, dcc, Output, Input, State, ClientsideFunction, clientside_callback
 import dash_bootstrap_components as dbc
 import theme  # registra las plantillas yt_light / yt_dark de Plotly
-import callbacks.filtros
+import callbacks.filtros   # filtros, KPIs y gráficos de la vista general
+import callbacks.detalle   # gráfico de dispersión de la vista detallada
 
 # Importar vistas
 from layouts.home import layout as home_layout

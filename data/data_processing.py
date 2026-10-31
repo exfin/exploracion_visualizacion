@@ -58,13 +58,15 @@ filas_borrar = df.loc[(df['Youtuber'] == 'Nombre Local') & (df['Country'].isnull
 df = df.drop(filas_borrar)
 
 
+# Nota: 'Desi Music Factory' no tiene país en el CSV y ninguna columna lo indica,
+# por eso se deja sin país (no aparece en el filtro, pero sí en los totales).
 dicc = {'Music': 'United States', 'Gaming': 'United States',
         'Goldmines':'India','LooLoo Kids - Nursery Rhymes and Children\'s Songs':'United States',
         'Badabun':'Mexico','Bad Bunny':'Puerto Rico','HolaSoyGerman.':'Chile',
         'elrubiusOMG':'Spain','Toys and Colors':'United States','LUCCAS NETO - LUCCAS TOON':'Brazil',
         'PowerKids TV':'India','News':'United States','Ozuna':'Puerto Rico','MrBeast Gaming':'United States',
         'Total Gaming':'India','T-Series Apna Punjab':'India','Techno Gamerz':'India',
-        'Desi Music Factory':'Desi Music Factory','WowKidz':'India','SMTOWN':'South Korea',
+        'WowKidz':'India','SMTOWN':'South Korea',
         'Luis Fonsi':'Puerto Rico','Frost Diamond':'Indonesia','jacksepticeye':'Ireland',
         'Popular on YouTube':'United States','Shorts Break':'India','Aditya Music India':'India',
         'Masha y el Oso':'Russia','Drake':'United States','Goldmines Dishoom':'India',
