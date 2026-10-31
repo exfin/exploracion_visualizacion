@@ -18,8 +18,9 @@ def actualizar_dashboard(pais_seleccionado):
     else:
         dff = df.copy()
 
-    total_canales = f"Canales: {len(dff):,}"
-    total_vistas = f"Vistas Totales: {dff['video views'].sum():,.0f}"
+    # Solo el número: la etiqueta ya está en la tarjeta del KPI
+    total_canales = f"{len(dff):,}"
+    total_vistas = f"{dff['video views'].sum():,.0f}"
 
     #grafico top 10
     top_10 = dff.nlargest(10, 'subscribers')

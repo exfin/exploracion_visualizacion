@@ -123,6 +123,219 @@ body {
 [data-bs-theme="dark"] .theme-toggle .icon-moon { display: none; }
 [data-bs-theme="dark"] .theme-toggle .icon-sun { display: inline; }
 
+/* =========================================================================
+   Estructura de la página
+   ========================================================================= */
+.app-container {
+  max-width: 1440px;
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+}
+
+/* Encabezado: deja espacio a la derecha para el botón de tema fijo */
+.app-header {
+  padding: 0.25rem 3.5rem 1rem 0;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Acento de marca: ícono rojo (elemento gráfico, contraste >= 3:1) */
+.brand-icon {
+  color: var(--yt-red);
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.app-subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--yt-text-secondary);
+  font-size: 0.95rem;
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.tab-body {
+  display: block;
+}
+
+/* ---- Pestañas tipo YouTube: subrayado rojo en la activa ---- */
+.yt-tabs {
+  --bs-nav-tabs-border-color: var(--yt-border);
+  --bs-nav-tabs-link-active-bg: transparent;
+  --bs-nav-tabs-link-active-color: var(--yt-text);
+  --bs-nav-tabs-link-active-border-color: transparent;
+  --bs-nav-tabs-link-hover-border-color: transparent;
+  --bs-nav-link-color: var(--yt-text-secondary);
+  --bs-nav-link-hover-color: var(--yt-text);
+  --bs-nav-link-font-weight: 500;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  scrollbar-width: none;
+}
+
+.yt-tabs .nav-link {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+}
+
+.yt-tabs .nav-link:hover {
+  border-bottom-color: var(--yt-border-strong);
+}
+
+.yt-tabs .nav-link.active {
+  border-bottom-color: var(--yt-red);
+}
+
+.yt-tabs .nav-link:focus-visible {
+  outline: 2px solid var(--yt-link);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+/* ---- Tarjetas ---- */
+.card {
+  --bs-card-bg: var(--yt-card);
+  --bs-card-border-color: var(--yt-border);
+  --bs-card-border-radius: 12px;
+  --bs-card-inner-border-radius: 11px;
+}
+
+/* ---- Filtros ---- */
+.filters-row {
+  margin-bottom: 1.25rem;
+}
+
+.filter-label {
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+/* ---- KPIs ---- */
+.kpi-row {
+  margin-bottom: 1.25rem;
+}
+
+.kpi-card {
+  height: 100%;
+}
+
+.kpi-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.25rem;
+  color: var(--yt-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.kpi-value {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.25rem + 0.6vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+/* ---- Gráficos ---- */
+.chart-card .card-body {
+  padding: 0.5rem;
+}
+
+.chart {
+  width: 100%;
+}
+
+/* =========================================================================
+   dcc.Dropdown (Dash 4): no sigue el tema de Bootstrap, se tematiza con sus
+   variables --Dash-*. Dash las define en :root dentro de un <style> que
+   inyecta después de este archivo, por eso se usa html[...] (más específico).
+   ========================================================================= */
+html:root,
+html[data-bs-theme="light"] {
+  --Dash-Fill-Inverse-Strong: var(--yt-card);           /* fondo del control y del menú */
+  --Dash-Fill-Interactive-Strong: var(--yt-link);       /* foco y casillas marcadas */
+  --Dash-Fill-Interactive-Weak: var(--yt-surface);
+  --Dash-Fill-Primary-Hover: rgba(15, 15, 15, 0.06);    /* opción bajo el cursor */
+  --Dash-Fill-Primary-Active: rgba(15, 15, 15, 0.1);    /* opción seleccionada */
+  --Dash-Fill-Disabled: var(--yt-border);               /* separadores */
+  --Dash-Stroke-Strong: var(--yt-border-strong);        /* borde del control (>= 3:1) */
+  --Dash-Stroke-Weak: var(--yt-border);
+  --Dash-Text-Primary: var(--yt-text);
+  --Dash-Text-Strong: var(--yt-text);
+  --Dash-Text-Weak: var(--yt-text-secondary);
+  --Dash-Text-Disabled: var(--yt-text-secondary);       /* placeholder (>= 4.5:1) */
+  --Dash-Shading-Strong: rgba(0, 0, 0, 0.18);
+  --Dash-Shading-Weak: rgba(0, 0, 0, 0.1);
+}
+
+html[data-bs-theme="dark"] {
+  --Dash-Fill-Inverse-Strong: var(--yt-card);
+  --Dash-Fill-Interactive-Strong: var(--yt-link);
+  --Dash-Fill-Interactive-Weak: var(--yt-surface);
+  --Dash-Fill-Primary-Hover: rgba(255, 255, 255, 0.08);
+  --Dash-Fill-Primary-Active: rgba(255, 255, 255, 0.14);
+  --Dash-Fill-Disabled: var(--yt-border);
+  --Dash-Stroke-Strong: var(--yt-border-strong);
+  --Dash-Stroke-Weak: var(--yt-border);
+  --Dash-Text-Primary: var(--yt-text);
+  --Dash-Text-Strong: var(--yt-text);
+  --Dash-Text-Weak: var(--yt-text-secondary);
+  --Dash-Text-Disabled: var(--yt-text-secondary);
+  --Dash-Shading-Strong: rgba(0, 0, 0, 0.6);
+  --Dash-Shading-Weak: rgba(0, 0, 0, 0.4);
+}
+
+/* Altura cómoda (40px) y mismo radio que los botones */
+.dash-dropdown {
+  width: 100%;
+  min-height: 2.5rem;
+  border-radius: 8px;
+  background-color: var(--yt-card);
+}
+
+.dash-dropdown-content {
+  border-radius: 8px;
+  background-color: var(--yt-card);
+}
+
+/* Opción bajo el cursor o con foco de teclado: fondo gris suave */
+.dash-dropdown-content .dash-options-list-option.dash-dropdown-option:hover,
+.dash-dropdown-content .dash-options-list-option.dash-dropdown-option:focus-within {
+  background-color: var(--Dash-Fill-Primary-Hover);
+}
+
+/* Opción seleccionada: fondo más marcado, negrita y barra roja a la izquierda
+   (así no se confunde con el hover, que solo cambia el color del texto) */
+.dash-dropdown-content .dash-options-list-option.dash-dropdown-option.selected {
+  background-color: var(--Dash-Fill-Primary-Active);
+  color: var(--yt-text);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 0 var(--yt-red), inset 0 -1px 0 0 var(--Dash-Fill-Disabled);
+}
+
+/* Contador "N seleccionados" en modo múltiple */
+.dash-dropdown-value-count {
+  background: var(--yt-surface);
+  color: var(--yt-text);
+}
+
 @media (prefers-reduced-motion: reduce) {
   body { transition: none; }
 }

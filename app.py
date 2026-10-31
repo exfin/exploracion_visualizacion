@@ -30,17 +30,46 @@ app.layout = html.Div([
         className="theme-toggle",
         title="Cambiar tema",
     ),
-    html.H1("Dashboard Analítico de YouTube"),
-    dcc.Tabs(id="tabs-navegacion", value='tab-home', children=[
-        dcc.Tab(label='Vista General', value='tab-home'),
-        dcc.Tab(label='Análisis Avanzado', value='tab-detail'),
-    ]),
-    html.Div(id='contenido-tab')
+    dbc.Container(
+        [
+            # Encabezado: único título de la página, con el ícono rojo de YouTube
+            html.Header(
+                [
+                    html.H1(
+                        [
+                            html.I(className="bi bi-youtube brand-icon", **{"aria-hidden": "true"}),
+                            html.Span("Dashboard Analítico de YouTube"),
+                        ],
+                        className="app-title",
+                    ),
+                    html.P(
+                        "Estadísticas globales de los principales canales de YouTube",
+                        className="app-subtitle",
+                    ),
+                ],
+                className="app-header",
+            ),
+            # Pestañas de navegación (los valores tab-home / tab-detail se mantienen)
+            dbc.Tabs(
+                id="tabs-navegacion",
+                active_tab="tab-home",
+                className="yt-tabs",
+                children=[
+                    dbc.Tab(label="Vista General", tab_id="tab-home"),
+                    dbc.Tab(label="Análisis Avanzado", tab_id="tab-detail"),
+                ],
+            ),
+            # Contenido de la pestaña activa
+            html.Main(id="contenido-tab", className="tab-body"),
+        ],
+        fluid=True,
+        className="app-container",
+    ),
 ])
 
 @app.callback(
     Output('contenido-tab', 'children'),
-    Input('tabs-navegacion', 'value')
+    Input('tabs-navegacion', 'active_tab')
 )
 def renderizar_pestana(tab):
     if tab == 'tab-home':

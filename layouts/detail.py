@@ -1,4 +1,5 @@
 from dash import html, dcc
+import dash_bootstrap_components as dbc
 import plotly.express as px
 from data.data_processing import df
 
@@ -14,6 +15,9 @@ fig_scatter = px.scatter(
 )
 
 layout = html.Div([
-    html.H2("Análisis Detallado y Métricas del País"),
-    dcc.Graph(figure=fig_scatter)
+    html.H2("Análisis Detallado y Métricas del País", className="section-title"),
+    dbc.Card(
+        dbc.CardBody(dcc.Graph(figure=fig_scatter, className="chart")),
+        className="chart-card",
+    ),
 ])
