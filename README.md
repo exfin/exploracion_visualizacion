@@ -110,6 +110,8 @@ La app queda disponible en http://127.0.0.1:8050/
 | Ingresos anuales máximos por categoría (ordenados por mediana) | Boxplot | Vista General |
 | Desempleo del país vs. ingresos del YouTuber (tamaño = suscriptores) | Dispersión de burbujas | Análisis Avanzado |
 
+**Colores por categoría:** cada una de las 18 categorías tiene un color fijo, el mismo en los tres gráficos (definido en `theme.py`). En el top 10, cada barra lleva al final un círculo con la inicial del canal; la leyenda muestra solo las categorías presentes y los canales sin categoría aparecen en gris como "Sin categoría".
+
 En el gráfico de dispersión se destacan las 3 categorías con más canales y el resto se agrupa como "Otras". Los canales sin tasa de desempleo no se muestran.
 
 Si una combinación de filtros no tiene datos, los gráficos muestran un mensaje en lugar de quedar vacíos.
@@ -124,7 +126,7 @@ Si una combinación de filtros no tiene datos, los gráficos muestran un mensaje
 | `tema.alternar` (cliente, `assets/theme.js`) | `theme-toggle.n_clicks` (estado: `theme-store.data`) | `theme-store.data` |
 | `tema.aplicar` (cliente, `assets/theme.js`) | `theme-store.data` | `theme-toggle-texto.children`, `theme-toggle.title` |
 
-**Modo claro / oscuro:** el botón de la esquina superior derecha alterna el tema. La primera vez se usa la preferencia del sistema operativo y luego se recuerda la elección en el navegador. La interfaz y los gráficos cambian de colores; la paleta de los gráficos fue verificada para daltonismo (protanopía y deuteranopía) en ambos modos.
+**Modo claro / oscuro:** el botón de la esquina superior derecha alterna el tema. La primera vez se usa la preferencia del sistema operativo y luego se recuerda la elección en el navegador. La interfaz y los gráficos cambian de colores. Los colores de las categorías tienen contraste suficiente con el fondo en cada modo y se distinguen entre sí con visión normal; para daltonismo (protanopía y deuteranopía) se verificó que se distingan las categorías vecinas, pero con 18 colores no todos los pares son distinguibles, por eso los nombres siempre están en ejes, leyenda y tooltips.
 
 **Diseño responsivo:** con Dash Bootstrap Components (`Container`, `Row`, `Col`, `Card`). En celulares los filtros, KPIs y gráficos se apilan en una columna.
 

@@ -8,7 +8,7 @@ TITULO_SCATTER = "Desempleo del país vs. ingresos del YouTuber"
 # En un scatter solo 3 colores se distinguen bien entre sí:
 # se destacan las 3 categorías con más canales y el resto se agrupa en "Otras".
 TOP_CATEGORIAS = df['category'].value_counts().index[:3].tolist()
-OTRAS = 'Otras'
+OTRAS = theme.OTRAS
 
 # Datos del scatter (las filas sin tasa de desempleo no se pueden ubicar en el eje X)
 df_scatter = df.dropna(subset=['Unemployment rate']).copy()
@@ -22,9 +22,10 @@ df_scatter['grupo'] = df_scatter['category'].where(
     Input('theme-store', 'data'),  # el tema vuelve a dibujar el gráfico
 )
 def actualizar_scatter(tema):
-    secuencia = theme.get_secuencia(tema)
-    colores = {cat: secuencia[i] for i, cat in enumerate(TOP_CATEGORIAS)}
-    colores[OTRAS] = theme.get_neutro(tema)
+    # Colores del mapeo compartido: misma categoría, mismo color que en la Vista General
+    mapa = theme.get_mapa_categorias(tema)
+    colores = {cat: mapa[cat] for cat in TOP_CATEGORIAS}
+    colores[OTRAS] = mapa[OTRAS]
 
     fig = px.scatter(
         df_scatter,
