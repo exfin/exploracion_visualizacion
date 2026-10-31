@@ -1,7 +1,12 @@
+from pathlib import Path
+
 import pandas as pd
 
+# Ruta del CSV relativa a este archivo (no depende del directorio de ejecución)
+RUTA_CSV = Path(__file__).parent / 'Global_YouTube_Statistics.csv'
+
 # Leemos el dataset
-df = pd.read_csv('data/Global_YouTube_Statistics.csv', sep=',', encoding='latin-1')
+df = pd.read_csv(RUTA_CSV, sep=',', encoding='latin-1')
 
 # Quitamos las columnas de las coordenadas del país
 df = df.drop(['Latitude', 'Longitude'], axis=1)

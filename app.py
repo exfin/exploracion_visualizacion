@@ -1,11 +1,17 @@
 from dash import Dash, html, dcc, Output, Input
-import callbacks.filtros  
+import dash_bootstrap_components as dbc
+import callbacks.filtros
 
 # Importar vistas
 from layouts.home import layout as home_layout
 from layouts.detail import layout as detail_layout
 
-app = Dash(__name__, suppress_callback_exceptions=True)
+# Bootstrap 5 (vía DBC) e íconos de Bootstrap
+app = Dash(
+    __name__,
+    suppress_callback_exceptions=True,
+    external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP],
+)
 server = app.server
 
 app.layout = html.Div([
