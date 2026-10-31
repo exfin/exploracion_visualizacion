@@ -6,14 +6,14 @@ Dashboard interactivo construido con **Dash**, **Plotly** y **Dash Bootstrap Com
 
 ## Autores
 
-- `[COMPLETAR: Nombre Apellido]`
-- `[COMPLETAR: Nombre Apellido]`
+- Juan Miguel López
+- Sofía Cabezas Cruz
 
 ## Descripción
 
 El dashboard permite comparar los canales de YouTube con más suscriptores según su país y su categoría, y relacionar sus ingresos con indicadores económicos del país de origen.
 
-**Pregunta de investigación** `[REVISAR: propuesta inferida a partir de los gráficos del dashboard]`:
+**Pregunta de investigación**:
 
 > ¿Cómo se distribuyen la audiencia y los ingresos de los canales de YouTube más grandes según su país y su categoría, y existe relación entre la tasa de desempleo del país de origen y los ingresos estimados del canal?
 
@@ -21,7 +21,7 @@ La **Vista General** responde la primera parte (quiénes concentran más suscrip
 
 ## Dataset
 
-- **Fuente:** Kaggle, "Global YouTube Statistics" `[COMPLETAR: enlace al dataset en Kaggle]`
+- **Fuente:** Kaggle, "Global YouTube Statistics" ([kaggle.com/datasets/nelgiriyewithana/global-youtube-statistics-2023](https://www.kaggle.com/datasets/nelgiriyewithana/global-youtube-statistics-2023))
 - **Archivo:** `data/Global_YouTube_Statistics.csv` (codificación latin-1)
 - **Tamaño original:** 995 filas y 28 columnas
 - **Tamaño después de la limpieza:** 993 filas y 26 columnas
