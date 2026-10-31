@@ -132,13 +132,25 @@ Si una combinación de filtros no tiene datos, los gráficos muestran un mensaje
 
 ## Capturas de pantalla
 
-`[COMPLETAR: captura de la Vista General en modo claro]`
+**Vista General en modo claro:** filtros, KPIs, top 10 con avatares y boxplot por categoría.
 
-`[COMPLETAR: captura de la Vista General en modo oscuro]`
+![Vista General en modo claro](docs/img/general-claro.png)
 
-`[COMPLETAR: captura del Análisis Avanzado]`
+**Vista General en modo oscuro:** los mismos gráficos con la paleta del modo oscuro.
 
-`[COMPLETAR: captura en celular]`
+![Vista General en modo oscuro](docs/img/general-oscuro.png)
+
+**Análisis Avanzado (modo oscuro):** dispersión entre desempleo del país e ingresos, con las 3 categorías principales y "Otras".
+
+![Análisis Avanzado en modo oscuro](docs/img/avanzado-oscuro.png)
+
+**En celular (modo claro):** encabezado y filtros, top 10 con su leyenda, y boxplot.
+
+<p>
+  <img src="docs/img/celular-1.png" width="240" alt="Celular: encabezado, filtros y KPIs">
+  <img src="docs/img/celular-2.png" width="240" alt="Celular: top 10 por suscriptores con leyenda">
+  <img src="docs/img/celular-3.png" width="240" alt="Celular: boxplot de ingresos por categoría">
+</p>
 
 ## Tecnologías
 
